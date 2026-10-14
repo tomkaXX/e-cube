@@ -3,6 +3,14 @@
 Interactive web application that estimates the **hourly Swiss day-ahead price curve (PFC) for 2035**, shows how its shape changes compared with 2024, and quantifies how sensitive it is to its drivers (PV deployment, nuclear, hydro, flexibility, cross-border capacity, neighbouring markets, gas & CO₂).
 
 **Live app:** https://tomkaXX.github.io/e-cube
+```
+cd .\e-cube
+npm install
+npm run dev
+```
+
+<img width="1841" height="1038" alt="image" src="https://github.com/user-attachments/assets/852c1821-7669-4045-82af-2dabe6078904" />
+
 
 The model runs entirely in the browser (in a Web Worker), so every slider recomputes the full 8,760-hour curve in about 0.1 s and the app can be hosted for free on GitHub Pages.
 
