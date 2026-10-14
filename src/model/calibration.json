@@ -1,0 +1,109 @@
+{
+  "_comment": "Default calibration of the merit-order / coupling model. Values are set by hand to reproduce typical 2023-2024 Swiss day-ahead patterns (level ~80 EUR/MWh, summer midday dip, winter evening peak). Run model/calibrate.py with an ENTSO-E token to re-fit them on real data; it overwrites this file and sets fitted=true.",
+  "fitted": false,
+  "fittedOn": null,
+  "meritOrder": {
+    "_comment": "x = share of regional (DE/FR/IT/AT) demand that must be met by dispatchable thermal plants (negative = renewable surplus that must be exported, stored, absorbed by electrolysers or curtailed). Price points: kind floor -> mult*negFloor, abs -> EUR/MWh, ccgt/ocgt -> mult * short-run marginal cost",
+    "points": [
+      [
+        -0.6,
+        "floor",
+        1.0
+      ],
+      [
+        -0.35,
+        "floor",
+        0.5
+      ],
+      [
+        -0.15,
+        "abs",
+        0.0
+      ],
+      [
+        -0.04,
+        "abs",
+        8.0
+      ],
+      [
+        0.04,
+        "ccgt",
+        0.45
+      ],
+      [
+        0.18,
+        "ccgt",
+        0.72
+      ],
+      [
+        0.34,
+        "ccgt",
+        0.86
+      ],
+      [
+        0.5,
+        "ccgt",
+        1.0
+      ],
+      [
+        0.66,
+        "ocgt",
+        0.95
+      ],
+      [
+        0.82,
+        "ocgt",
+        1.35
+      ]
+    ],
+    "ccgtEfficiency": 0.55,
+    "ocgtEfficiency": 0.38,
+    "emissionFactor": 0.202,
+    "ccgtVom": 3.0,
+    "ocgtVom": 6.0,
+    "priceCap": 1500
+  },
+  "coupling": {
+    "_comment": "regionalDemandGW: average demand of the coupled DE/FR/IT/AT region; swissPremium: structural CH spread vs. region; importSlope/exportSlope: EUR/MWh per GW beyond the net transfer capacity",
+    "regionalDemandGW": 150,
+    "swissPremium": 3.0,
+    "importSlope": 22,
+    "exportSlope": 18,
+    "transitWinterGW": 1.2,
+    "transitSummerGW": 0.4
+  },
+  "hydro": {
+    "_comment": "storage-hydro monthly release pattern (share of annual budget) and smoothing of the water-value dispatch",
+    "storageMonthly": [
+      0.112,
+      0.102,
+      0.097,
+      0.068,
+      0.058,
+      0.066,
+      0.077,
+      0.078,
+      0.068,
+      0.079,
+      0.089,
+      0.106
+    ],
+    "rorMonthly": [
+      0.046,
+      0.042,
+      0.052,
+      0.07,
+      0.106,
+      0.13,
+      0.133,
+      0.118,
+      0.092,
+      0.075,
+      0.07,
+      0.066
+    ],
+    "minRelease": 0.06,
+    "dispatchSoftness": 9
+  },
+  "historicalImportance": null
+}
